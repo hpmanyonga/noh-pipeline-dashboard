@@ -19,6 +19,8 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
+from auth import require_auth
+
 # ---------------------------------------------------------------------------
 # Page config
 # ---------------------------------------------------------------------------
@@ -27,6 +29,12 @@ st.set_page_config(
     page_icon=None,
     layout="wide",
 )
+
+# ---------------------------------------------------------------------------
+# Auth gate — must sign in before seeing anything
+# ---------------------------------------------------------------------------
+if not require_auth():
+    st.stop()
 
 # ---------------------------------------------------------------------------
 # Brand constants
